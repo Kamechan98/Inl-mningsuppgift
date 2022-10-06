@@ -22,15 +22,15 @@ const validateLastName = (id) => {
 
     if(input.value.trim() === '') {
         console.log('You have to write a valid name');
-        return setError(input)
+        return //setError(input)
       } 
       else if (input.value.length < 2) {
         console.log('You have to write a valid name');
-        return setError(input)
+        return //setError(input)
       }
       else {
         console.log('your name is valid');
-        return setSuccess(input)
+        return //setSuccess(input)
       }
     
     }
@@ -42,54 +42,67 @@ const validateEmail = (id) => {
 
     if(email.value.trim() === '') {
         console.log('You have to write a valid email');
-      return setError(email)
+      return //setError(email)
     }
     else if(!regEx.test(email.value)) {
         console.log('You have to write a valid email');
-      return setError(email)
+      return //setError(email)
     }
     else {
         console.log('your email is valid')
-      return setSuccess(email)
+      return //setSuccess(email)
     }
 }
 
 const validatePassword = (id) => {
     const password = document.querySelector(id)
+    const repeatPassword = document.querySelector(id)
 
-    if(password.value.trim() === '') {
-      return setError(password)
+    if(password.value === '') { 
+    console.log('Please enter a password')
+    return 
     }
-    else if(test(password.value)) {
-      return setError(password)
+    else if(repeatPassword.value === '') {
+        console.log('Please enter confirm password');
+      return //setError(password)
     }
-    else {
-      return setSuccess(password)
+    else if(password !== repeatPassword) {
+        console.log('Your passwords do not match');
+      return //setError(password)
+    }
+    else{
+        console.log('Congrats your passwords match')
+      return //setSuccess(password)
     }
 }
 
-const validateRepeatPassword = (id) => {
-    const password = document.querySelector(id)
+// const validateRepeatPassword = (id) => {
+//     const repeatPassword = document.querySelector(id)
 
-    if(password.value.trim() === '') {
-        return setError(password)
-      }
-      else if(test(password.value)) {
-        return setError(password)
-      }
-      else {
-        return setSuccess(password)
-      }
-}
+//     if(!repeatPassword == password) {
+//         console.log('The passwords do not match');
+//         return //setError(password)
+//       }
+//     //   else if(test(repeatPassword.value)) {
+//     //     console.log('The passwords do not match');
+//     // //     return //setError(password)
+//     //   }
+//       else {
+//         console.log('The passwords match');
+//         return //setSuccess(password)
+//       }
+// }
 
 const validateCheckbox = (id) => {
     const checkbox = document.querySelector(id)
 
     if(!checkbox.checked) {
-        return setError(checkbox)
+        console.log('You need to accept the terms');
+        return //setError(checkbox)
       }
       else {
-        return setSuccess(checkbox)
+        console.log('You have accepted the terms');
+        return //setSuccess(checkbox)
       }
 }
 
@@ -103,9 +116,9 @@ form.addEventListener('submit', e => {
   validateFirstName('#firstName')
   validateLastName('#lastName')
   validateEmail('#email')
-  validatePassword('password')
+  validatePassword('#password')
   validatePassword('#repeatPassword')
-  validateCheck('#terms')
+  validateCheckbox('#terms')
 
 //     for(let i = 0; i < form.length; i++) {
 
