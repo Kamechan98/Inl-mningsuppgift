@@ -132,6 +132,14 @@ const errors =[];
     }
 }
 })
+
+const user ={
+    firstName: document.querySelector('firstName'),
+    lastName: document.querySelector('lastName'),
+    email: document.querySelector('email'),
+    password:document.querySelector('password')
+}
+console.log(user)
 // console.log(errors);
 
 // if(errors.includes(false)) {
