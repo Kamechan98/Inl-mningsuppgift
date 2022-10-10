@@ -47,8 +47,8 @@ const validatePassword = (id) => {
     return 
     }
 
-    else if(password.value.length < 6) {
-    console.log ('Password needs to be at least 6  characters')
+    else if(password.value.length < 6 || password.value.length > 15) {
+    console.log ('Password needs to be at least 6 characters but no more than 15')
     return setError(password)
     }
 
