@@ -1,8 +1,9 @@
 const form = document.querySelector('#validationForm')
+const btn = document.querySelector('#btn');
+
 
 const validateText = (id) => {
     const input = document.querySelector(id)
-
 
     if(input.value.trim() === '') {
         console.log('You have to write a valid name');
@@ -16,26 +17,7 @@ const validateText = (id) => {
         console.log('your name is valid')
         return setSuccess(input)
       }
-    
     }
-
-// const validateLastName = (id) => {
-//     const input = document.querySelector(id)
-
-//     if(input.value.trim() === '') {
-//         console.log('You have to write a valid name');
-//         return setError(input)
-//       } 
-//       else if (input.value.length < 2) {
-//         console.log('You have to write a valid name');
-//         return setError(input)
-//       }
-//       else {
-//         console.log('your name is valid');
-//         return setSuccess(input)
-//       }
-    
-//     }
 
 const validateEmail = (id) => {
     const email = document.querySelector(id)
@@ -109,31 +91,30 @@ const validateCheckbox = (id) => {
       }
     }
 
-const setSuccess = (inputId) => {
+const setSuccess = (input) => {
     return true;
   }
   
-  const setError = (inputId) => {
+  const setError = (input) => {
     return false;
   }
 
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-})
+
 
 //   validateFirstName('#firstName')
 //   validateLastName('#lastName')
 //   validateEmail('#email')
 //   validatePassword('#password')
 //   validatePassword('#repeatPassword')
-//   validateCheckbox('#terms')
+//   validateCheckbox('#terms') 
 const errors =[];    
 
     for(let i = 0; i < form.length; i++) {
         const inputId = '#' + form[i].id
         
-
         if(form[i].type === 'text') {
         errors[i] = validateText(inputId)
     }
@@ -150,12 +131,12 @@ const errors =[];
         errors[i] =validateCheckbox(inputId)
     }
 }
+})
+// console.log(errors);
 
-console.log(errors);
-
-if(errors.includes(false)) {
-    console.log('Error found')
-} 
-else { 
-    console.log('Success!')
-}
+// if(errors.includes(false)) {
+//     console.log('Error found')
+// } 
+// else { 
+//     console.log('Success!')
+// }
