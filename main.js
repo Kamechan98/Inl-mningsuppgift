@@ -67,23 +67,6 @@ const validatePassword = (id) => {
     }  
 }
 
-// const validateRepeatPassword = (id) => {
-//     const repeatPassword = document.querySelector(id)
-
-//     if(!repeatPassword == password) {
-//         console.log('The passwords do not match');
-//         return //setError(password)
-//       }
-//     //   else if(test(repeatPassword.value)) {
-//     //     console.log('The passwords do not match');
-//     // //     return //setError(password)
-//     //   }
-//       else {
-//         console.log('The passwords match');
-//         return //setSuccess(password)
-//       }
-// }
-
 const validateCheckbox = (id) => {
     const checkbox = document.querySelector(id)
 
@@ -137,20 +120,14 @@ const errors =[];
         errors[i] =validateCheckbox(inputId)
     }
 }
-})
+
 
 const user ={
-    firstName: document.querySelector('firstName'),
-    lastName: document.querySelector('lastName'),
-    email: document.querySelector('email'),
-    password:document.querySelector('password')
+    firstName:(firstName).value,
+    lastName: (lastName).value,
+    email: (email).value,
+    password:(password).value,
 }
 console.log(user)
-// console.log(errors);
 
-// if(errors.includes(false)) {
-//     console.log('Error found')
-// } 
-// else { 
-//     console.log('Success!')
-// }
+})
