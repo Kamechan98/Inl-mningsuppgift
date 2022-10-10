@@ -1,6 +1,7 @@
 const form = document.querySelector('#validationForm')
 const btn = document.querySelector('#btn');
 
+const errors = [];
 
 const validateText = (id) => {
     const input = document.querySelector(id)
@@ -129,5 +130,14 @@ const user ={
     password:(password).value,
 }
 console.log(user)
+
+if(errors.includes(false)) {
+    console.log('Something went wrong')
+}
+else {
+    console.log('You made it!');
+}
+
+
 
 })
