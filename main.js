@@ -50,13 +50,13 @@ const validatePassword = (id) => {
         console.log('Please enter confirm password');
       return setError(password)
     }
-    else if('password' !== 'repeatPassword') {
+    else if(password.value !== repeatPassword.value) {
         console.log('Your passwords do not match');
       return setError(password)
     }
     else{
         console.log('Congrats your passwords match') 
-        return setSuccess(password)
+        return setSuccess(repeatPassword)
        
     }  
 }
