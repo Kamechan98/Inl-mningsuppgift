@@ -46,6 +46,12 @@ const validatePassword = (id) => {
     console.log('Please enter a password')
     return 
     }
+
+    else if(password.value.length < 6) {
+    console.log ('Password needs to be at least 6  characters')
+    return setError(password)
+    }
+
     else if(repeatPassword.value === '') {
         console.log('Please enter confirm password');
       return setError(password)
