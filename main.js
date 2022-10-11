@@ -1,14 +1,23 @@
 const form = document.querySelector('#validationForm')
 const btn = document.querySelector('#btn');
 
-const errors = [];
+const errors = [];                   // en tom array som fångar upp eventuella fel i formuläret
+
+const setSuccess = (input) => {     // Deklarerar setSuccess som en funktion som tar emot referens från input som returnarsom true
+    return true;
+  }
+  
+  const setError = (input) => {     // Deklarerar setError som en funktion som tar emot referens från input som returnar som false
+    return false;
+  }
+
 
 const validateText = (id) => {
-    const input = document.querySelector(id)
+    const input = document.querySelector(id)  //Hämtar en referens med hjälp av ett id från html
 
     if(input.value.trim() === '') {
         console.log('You have to write a valid name');
-        return setError(input)
+        return setError(input)                  //Kallar på setError och kör den här funktionen med referens som vi får från id
       } 
       else if (input.value.length < 2) {
         console.log('You have to write a valid name');
@@ -16,7 +25,7 @@ const validateText = (id) => {
       }
       else {
         console.log('your name is valid')
-        return setSuccess(input)
+        return setSuccess(input)            //Kallar på setSuccess och kör den här funktionen med referens som vi får från id
       }
     }
 
@@ -81,17 +90,8 @@ const validateCheckbox = (id) => {
       }
     }
 
-const setSuccess = (input) => {
-    return true;
-  }
-  
-  const setError = (input) => {
-    return false;
-  }
-
-
-form.addEventListener('submit', e => {
-    e.preventDefault()
+form.addEventListener('submit', e => { //ett event som lyssnar efter en 'submit' och sedan skickar det vi skrivit
+    e.preventDefault()      //Hindrar sidan från att ladda om
 
 
 //   validateFirstName('#firstName')
@@ -100,9 +100,8 @@ form.addEventListener('submit', e => {
 //   validatePassword('#password')
 //   validatePassword('#repeatPassword')
 //   validateCheckbox('#terms') 
-const errors =[];    
 
-    for(let i = 0; i < form.length; i++) {
+    for(let i = 0; i < form.length; i++) {  
         const inputId = '#' + form[i].id
         
         if(form[i].type === 'text') {
@@ -122,7 +121,7 @@ const errors =[];
     }
 }
 
-
+// tar id:et från alla inputs och tar in infon som skrivs in i formuläret i ett user object. 
 const user ={
     firstName:(firstName).value,
     lastName: (lastName).value,
