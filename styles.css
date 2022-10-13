@@ -15,14 +15,14 @@ body {
 
 .validation-form {
   width: 500px;
-  background-color: #ffffff;
+  background-color: #a8e8cc;
   padding: 1rem;
   border-radius: .5rem;
-  border: 1px solid #d8d8d8;
+  border: 1px solid black;
 }
 .headline {
   text-align: center;
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid black;
   padding-bottom: 1rem;
 }
 .form-content {
@@ -40,7 +40,7 @@ body {
   width: 100%;
   padding: .5rem;
   border-radius: .5rem;
-  border: 1px solid #d8d8d8;
+  border: 1px solid black;
 }
 
 .btn {
@@ -56,7 +56,7 @@ body {
   width: 100%;
 }
 .btn-primary {
-  background-color: hsl(180, 25%, 25%);
+  background-color: hsl(180, 25%, 19%);
   color: #ffffff;
   transition: background 70ms;
 }

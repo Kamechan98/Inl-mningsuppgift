@@ -16,19 +16,19 @@ const setSuccess = (input) => {     // Deklarerar setSuccess som en funktion som
 
 const validateText = (id) => {
     const input = document.querySelector(id)  //Hämtar en referens med hjälp av ett id från html
-    const regExTxt = /^[a-zA-ZäöüßÄÖÜ]$/ //Tillåter namn med alla bokstäver i alfabetet, plus bindestreck
+    const regExTxt = /^[a-zA-ZåäöüßÅÄÖÜ]$/ //Tillåter namn med alla bokstäver i alfabetet, plus bindestreck
 
     if(input.value.trim() === '') {
         // console.log(input.id + ' You have to write a valid name');
-        console.log(`You have to write a valid ${input.name}`)
+        console.log(!regExTxt.test)(`You have to write a valid ${input.name}`)
         
         input.classList.add('error');
         input.classList.remove('success');
 
-        return setError(input);                  //Kallar på setError och kör den här funktionen med referens som vi får från id
-      } 
+        return setError(input);             //Kallar på setError och kör den här funktionen med referens som vi får från id
+      }
       else if (input.value.length < 2) {
-        console.log(`You have to write a valid ${input.name}`)
+        console.log(!regExTxt.test)(`You have to write a valid ${input.name}`)
         //console.log('You have to write a valid name');
 
         input.classList.add('error');
@@ -37,7 +37,7 @@ const validateText = (id) => {
         return setError(input);
       }
       else {
-        console.log('your name is valid');
+        console.log(`Your ${input.name} is valid`);
         
         input.classList.add('success');
         input.classList.remove('error');
@@ -75,12 +75,13 @@ const validateText = (id) => {
     }
 }
 
-const validatePassword = (id) => {
-    const password = document.querySelector(id)
-    const repeatPassword = document.querySelector('#repeatPassword')
-    
-    const pswStr = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{6,}$/; //Ett lösenord måste ha minst 6 karaktärer, en stor och liten bokstav och ett nummer
 
+
+const validatePassword = (id) => {
+ 
+    const password = document.querySelector(id)
+    const pswStr = /^(?=.*[a-zA-Z])(?=.*\d){6,10}.*$/; //Ett lösenord måste ha 6-10 karaktärer, en stor och liten bokstav och ett nummer   
+    
     if(password.value === '') { 
     console.log('Please enter a password')
 
@@ -96,31 +97,48 @@ const validatePassword = (id) => {
     password.classList.remove('success')
     return setError(password)
     }
-
-    else if(repeatPassword.value === '') {
-        console.log('Please enter confirm password');
-        
-        password.classList.add('error')
-        password.classList.remove('success')
+    else if(!pswStr.test(password.value)) {
+      console.log('Password not valid')
+      
+      password.classList.add('error')
+      password.classList.remove('success')
       return setError(password)
+    }
+    else {
+      console.log('Password is valid')
+
+      password.classList.remove('error')
+      password.classList.add('success')
+      return setSuccess(password)
+    }
+  }    
+      const validateRepeatPassword = (id) => {
+      const password = document.querySelector('#password')
+      const repeatPassword = document.querySelector(id)
+      
+      if(repeatPassword.value === '') { 
+        console.log('Please enter repeat password')
+        repeatPassword.classList.add('error')
+        repeatPassword.classList.remove('success')
+        return setError(repeatPassword)
     }
     else if(password.value !== repeatPassword.value) {
-        console.log('Your passwords do not match');
+    console.log('Your passwords do not match');
 
-        password.classList.add('error')
-        password.classList.remove('success')
-      return setError(password)
-    }
-    else{
-        console.log('Congrats your passwords match') 
+    repeatPassword.classList.add('error')
+    repeatPassword.classList.remove('success')
+    return setError(repeatPassword)
+  }
+  else{
+    console.log('Congrats your passwords match') 
 
-        password.classList.add('success')
-        password.classList.remove('error')
+    repeatPassword.classList.add('success')
+    repeatPassword.classList.remove('error')
 
-        return setSuccess(repeatPassword)
-       
-    }  
-}
+    return setSuccess(repeatPassword)
+  }  
+} 
+
 
 const validateCheckbox = (id) => {
     const checkbox = document.querySelector(id)
@@ -145,14 +163,6 @@ const validateCheckbox = (id) => {
 form.addEventListener('submit', e => { //ett event som lyssnar efter en 'submit' och sedan skickar det vi skrivit
     e.preventDefault()      //Hindrar sidan från att ladda om
 
- //validateFirstName('#firstName')
-//validateLastName('#lastName')
-//   validateEmail('#email')
-//   validatePassword('#password')
-//   validatePassword('#repeatPassword')
-//   validateCheckbox('#terms') 
-
-
     for(let i = 0; i < form.length; i++) {  
         const inputId = '#' + form[i].id
         
@@ -165,7 +175,11 @@ form.addEventListener('submit', e => { //ett event som lyssnar efter en 'submit'
     }
 
     else if(form[i].type === 'password'){
+      if(form[i].id === 'repeatPassword') {
+        errors[i] = validateRepeatPassword(inputId)
+      } else {
         errors[i] = validatePassword(inputId)
+      }
     }
 
     else if(form[i].type === 'checkbox') {
