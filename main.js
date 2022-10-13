@@ -16,26 +16,32 @@ const setSuccess = (input) => {     // Deklarerar setSuccess som en funktion som
 
 const validateText = (id) => {
     const input = document.querySelector(id)  //Hämtar en referens med hjälp av ett id från html
-    const regExTxt = /^[a-zA-ZåäöüßÅÄÖÜ]$/ //Tillåter namn med alla bokstäver i alfabetet, plus bindestreck
+    const regExTxt = /^[a-zA-ZåäöüßÅÄÖÜ][^\(\)0-9]*$/ //Tillåter namn med alla bokstäver i alfabetet, plus bindestreck
 
     if(input.value.trim() === '') {
         // console.log(input.id + ' You have to write a valid name');
-        console.log(!regExTxt.test)(`You have to write a valid ${input.name}`)
+        console.log(`You have to write a valid ${input.name}`)
         
         input.classList.add('error');
         input.classList.remove('success');
 
         return setError(input);             //Kallar på setError och kör den här funktionen med referens som vi får från id
       }
-      else if (input.value.length < 2) {
-        console.log(!regExTxt.test)(`You have to write a valid ${input.name}`)
-        //console.log('You have to write a valid name');
+      else if (input.value < 2) {
+        console.log(`You have to write a valid ${input.name}`)
 
         input.classList.add('error');
         input.classList.remove('success');
 
         return setError(input);
       }
+      else if (!input.value.match(regExTxt)) {
+        console.log(`You have to write a valid ${input.name}`)
+
+        input.classList.add('error')
+        input.classList.remove('success')
+      }
+
       else {
         console.log(`Your ${input.name} is valid`);
         
