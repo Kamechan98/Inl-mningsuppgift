@@ -19,7 +19,6 @@ const validateText = (id) => {
     const regExTxt = /^[a-zA-ZåäöüßÅÄÖÜ][^\(\)0-9]*$/ //Tillåter namn med alla bokstäver i alfabetet, plus bindestreck
 
     if(input.value.trim() === '') {
-        // console.log(input.id + ' You have to write a valid name');
         console.log(`You have to write a valid ${input.name}`)
         
         input.classList.add('error');
@@ -36,7 +35,7 @@ const validateText = (id) => {
         return setError(input);
       }
       else if (!input.value.match(regExTxt)) {
-        console.log(`You have to write a valid ${input.name}`)
+        console.log(`You have to write a valid ${input.name}`) //Om texten inte fyller kraven från regExText godkänns det inte
 
         input.classList.add('error')
         input.classList.remove('success')
@@ -65,7 +64,7 @@ const validateText = (id) => {
 
       return setError(email)
     }
-    else if(!regEx.test(email.value)) {
+    else if(!regEx.test(email.value)) {     //Om emailen inte fyller kraven från regEx godkänns det inte
         console.log('You have to write a valid email');
 
         email.classList.add('error')
@@ -73,7 +72,7 @@ const validateText = (id) => {
       return setError(email)
     }
     else {
-        console.log('your email is valid')
+        console.log('Your email is valid')
       
         email.classList.add('success');
         email.classList.remove('error');
@@ -86,7 +85,7 @@ const validateText = (id) => {
 const validatePassword = (id) => {
  
     const password = document.querySelector(id)
-    const pswStr = /^(?=.*[a-zA-Z])(?=.*\d){6,10}.*$/; //Ett lösenord måste ha 6-10 karaktärer, en stor och liten bokstav och ett nummer   
+    const pswStr = /^(?=.*[a-zA-ZåäöüßÅÄÖÜ])(?=.*\d){6,10}.*$/; //Ett lösenord måste ha 6-10 karaktärer, en stor och liten bokstav och ett nummer   
     
     if(password.value === '') { 
     console.log('Please enter a password')
@@ -103,7 +102,7 @@ const validatePassword = (id) => {
     password.classList.remove('success')
     return setError(password)
     }
-    else if(!pswStr.test(password.value)) {
+    else if(!pswStr.test(password.value)) {     //Om password inte fyller kraven från pwsStr godkänns det inte
       console.log('Password not valid')
       
       password.classList.add('error')
@@ -169,7 +168,7 @@ const validateCheckbox = (id) => {
 form.addEventListener('submit', e => { //ett event som lyssnar efter en 'submit' och sedan skickar det vi skrivit
     e.preventDefault()      //Hindrar sidan från att ladda om
 
-    for(let i = 0; i < form.length; i++) {  
+    for(let i = 0; i < form.length; i++) {      //Loopar genom formuläret och validerar alla Id och input
         const inputId = '#' + form[i].id
         
         if(form[i].type === 'text') {
@@ -205,13 +204,11 @@ console.log(user)
 
 if(errors.includes(false)) {
     console.log('Something went wrong') 
-    div.classList.remove("d-none")    //* Kallar på errorMessage och tar d-none på html'en
+    div.classList.remove("d-none")    // Kallar på errorMessage och tar d-none på html'en
   }
 else {
     console.log('You made it!');
-    div.classList.add("d-none");
+    div.classList.add("d-none"); //Lägger till d-none så att errorMessage inte dyker upp
 }
-
-
 
 })
