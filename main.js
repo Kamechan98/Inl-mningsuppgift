@@ -85,7 +85,7 @@ const validateText = (id) => {
 const validatePassword = (id) => {
  
     const password = document.querySelector(id)
-    const pswStr = /^(?=.*[a-zA-ZåäöüßÅÄÖÜ])(?=.*\d){6,10}.*$/; //Ett lösenord måste ha 6-10 karaktärer, en stor och liten bokstav och ett nummer   
+    const pswStr = /^(?=.*[a-zA-Z])(?=.*\d){6,10}.*$/; //Ett lösenord måste ha 6-10 karaktärer, en stor och liten bokstav och ett nummer   
     
     if(password.value === '') { 
     console.log('Please enter a password')
